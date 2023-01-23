@@ -1,0 +1,113 @@
+html,body {
+
+    margin: 0;
+    
+  }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+    font-size: 18px;
+    color: rgb(53, 53, 53);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header h1{
+    text-align: center;
+    margin: 32px 0;
+    font-style: italic;
+
+}
+
+header h2 {
+    text-align: center;
+    color: #313131;
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 22px;
+}
+
+header p {
+    margin: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+
+.score-box {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    gap: 120px;
+    
+}
+
+.game-result {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+/*  ✋ ✌ ✊  */
+
+.score-box .card .img-box {
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 32px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 160px;
+}
+
+.card .card-score{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.container-select {
+    margin-top: 46px;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    
+}
+
+.container-select button {
+    font-size: 5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    min-width: 160px;
+    border: none;
+    background-color: #6b6bdcd7;
+    
+}
+
+.container-select button:hover{
+    background-color: #6b6bdc76;
+}
+
+.container-select button div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    
+}
+
+footer h3{
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #444444cc;
+}

@@ -58,13 +58,18 @@ const playerScoreBox = document.querySelector('.player-score');
 const computerScoreBox = document.querySelector('.computer-score');
 const resultGameBox = document.querySelector('.game-result');
 
+const playerBox = document.querySelector('.player-box');
+const computerBox = document.querySelector('.computer-box');
+
 function createMessageRound(e) {
-    
+
 
     const messageBox = document.querySelector('.message-box');
+    const messageResRound = document.querySelector('.round-number');
     let resRound = singleRoundOfGame(this.dataset.weapon);
     let messageRound = getMessageRound(resRound);
-    messageBox.textContent = messageRound;
+    messageResRound.textContent = messageRound[0];
+    messageBox.textContent = messageRound[1];
 
     gameUI(resRound,playerScoreBox,computerScoreBox,resultGameBox);
 
@@ -95,14 +100,18 @@ function gameUI(resRound,playerScoreBox, computerScoreBox, resultGameBox) {
         playerScore = 0;
     }
 
+    playerBox.textContent = textToEmoji(resRound[1]);
+    computerBox.textContent = textToEmoji(resRound[2]);
+
     if(resRound[0] === 1) {
         
         playerScoreBox.dataset.playerScore = ++playerScore;
-        playerScoreBox.textContent = playerScore;
+
+        playerScoreBox.textContent = "Player: " + playerScore;
     }
     if(resRound[0] === -1){
         computerScoreBox.dataset.computerScore = ++computerScore;
-        computerScoreBox.textContent = computerScore;
+        computerScoreBox.textContent = "Computer: " + computerScore;
     }
 
     if(playerScore === 5) {
@@ -121,8 +130,10 @@ function resetGame() {
     resultGameBox.textContent = "";
     computerScoreBox.dataset.computerScore = 0;
     playerScoreBox.dataset.playerScore = 0;
-    playerScoreBox.textContent = "0";
-    computerScoreBox.textContent = "0";
+    playerScoreBox.textContent = "Player: 0";
+    playerBox.textContent = '❔';
+    computerBox.textContent = '❔';
+    computerScoreBox.textContent = "Computer: 0";
 }
 
 const weapons = document.querySelectorAll('.weapon');
@@ -130,19 +141,33 @@ const weapons = document.querySelectorAll('.weapon');
 weapons.forEach((weapon) => weapon.addEventListener('click',createMessageRound));
 weapons.forEach((weapon) => weapon.addEventListener('click',startGame,{once: true}));
 function startGame(e){
-    computerScoreBox.textContent = computerScoreBox.dataset.computerScore;
-    playerScoreBox.textContent = playerScoreBox.dataset.playerScore;
+    computerScoreBox.textContent = "Computer: " + computerScoreBox.dataset.computerScore;
+    playerScoreBox.textContent = "Player: " + playerScoreBox.dataset.playerScore;
 
 }
 
+function textToEmoji(text){
+    text = text.toLowerCase();
+    if(text === "paper") return '✋';
+    if(text === "rock") return '✊';
+    if(text === "scissors") return '✌';
+    return;
+}
+
+function ucFirst(str) {
+    if (!str) return str;
+  
+    return str[0].toUpperCase() + str.slice(1);
+  }
 
 
 function getMessageRound(resultRound) {
 
-    let messageWin = "You Win! " + resultRound[1] + " beats " + resultRound[2] + " :)";
-    let messageLose = "You Lose! " + resultRound[2] + " beats " + resultRound[1] + " :(";
 
-    if(resultRound[0] === 0) return "Tie! No one get score.";
+    let messageWin = ["You Won!",ucFirst(resultRound[1] + " beats " + resultRound[2] + " :)")];
+    let messageLose =["You lost!", ucFirst(resultRound[2] + " beats " + resultRound[1] + " :(")];
+
+    if(resultRound[0] === 0) return ["It's tie!", ucFirst(resultRound[1] + " ties with " + resultRound[2])];
 
     if(resultRound[0] === 1) return messageWin;
     if(resultRound[0] === -1) return messageLose;

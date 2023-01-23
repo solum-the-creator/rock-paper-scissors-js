@@ -6,29 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Rock Paper Scissors</h1>
-
-    <div class="container-select">
-        <button class="weapon rock-button" data-weapon="rock">Rock</button>
-        <button class="weapon paper-button" data-weapon="paper">Paper</button>
-        <button class="weapon scissors-button" data-weapon="scissors">Scissors</button>
-    </div>
-    <div class="message-box">
-        
-    </div>
-    <div class="score-box">
-        <div data-player-score="0" class="player-score">
-
-        </div>
-        <div data-computer-score="0" class="computer-score">
-
-        </div>
+    <header>
+        <h1>Rock, Paper, Scissors!</h1>
+        <h2 class="round-number">Choose your weapon </h2>
+        <p class="message-box">First to score 5 points wins the game</p>
         <div class="game-result">
-
+    
         </div>
-    </div>
+    </header>
+    <main> 
+        <div class="score-box">
+            <div class="card">
+                <div class="img-box player-box">
+                    ❔
+                </div>
+                <div data-player-score="0" class="card-score player-score">
+                    Player: 0
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-box computer-box">
+                    ❔
+                </div>
+                <div data-computer-score="0" class="card-score computer-score">
+                    Computer: 0
+                </div>
+            </div>
+        </div>
+        <div class="container-select">
+            <button class="weapon rock-button" data-weapon="rock"><div class="icon-button"> ✊</div></button>
+            <button class="weapon paper-button" data-weapon="paper"><div class="icon-button">✋</div></button>
+            <button class="weapon scissors-button" data-weapon="scissors"><div class="icon-button">✌</div></button>
+        </div>
+        
+    </main>
+    <footer>
+        <h3>Copyright © 2023 solum-the-creator
+        </h3>
+    </footer>
+
+    
 
 
     <script src="/js/script.js"></script>
