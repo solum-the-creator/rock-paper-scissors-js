@@ -54,6 +54,89 @@ function singleRoundOfGame(playerChoice){
     }
 }
 
+const playerScoreBox = document.querySelector('.player-score');
+const computerScoreBox = document.querySelector('.computer-score');
+const resultGameBox = document.querySelector('.game-result');
+
+function createMessageRound(e) {
+    
+
+    const messageBox = document.querySelector('.message-box');
+    let resRound = singleRoundOfGame(this.dataset.weapon);
+    let messageRound = getMessageRound(resRound);
+    messageBox.textContent = messageRound;
+
+    gameUI(resRound,playerScoreBox,computerScoreBox,resultGameBox);
+
+    // while(playerScore < 5 && computerScore < 5) {
+        
+
+        
+
+    //     if(resRound[0] === 1) playerScore++;
+    //     if(resRound[0] === -1) computerScore++;
+
+    //     playerScoreBox.textContent = "Player Score: "+ playerScore;
+    //     computerScoreBox.textContent = "Computer Score: "+ computerScore;
+    // }
+
+    // if(playerScore===5) resultGameBox = "Player WIN THE GAME!";
+    
+}
+
+
+
+function gameUI(resRound,playerScoreBox, computerScoreBox, resultGameBox) {
+    let playerScore = +playerScoreBox.dataset.playerScore;
+    let computerScore = +computerScoreBox.dataset.computerScore;
+    if(playerScore === 5 || computerScore === 5) {
+        resetGame();
+        computerScore = 0;
+        playerScore = 0;
+    }
+
+    if(resRound[0] === 1) {
+        
+        playerScoreBox.dataset.playerScore = ++playerScore;
+        playerScoreBox.textContent = playerScore;
+    }
+    if(resRound[0] === -1){
+        computerScoreBox.dataset.computerScore = ++computerScore;
+        computerScoreBox.textContent = computerScore;
+    }
+
+    if(playerScore === 5) {
+        resultGameBox.textContent = "Player WIN THE GAME!";
+
+    }
+    if(computerScore === 5) {
+        resultGameBox.textContent = "Computer WIN THE GAME!";
+
+    }
+    
+
+}
+
+function resetGame() {
+    resultGameBox.textContent = "";
+    computerScoreBox.dataset.computerScore = 0;
+    playerScoreBox.dataset.playerScore = 0;
+    playerScoreBox.textContent = "0";
+    computerScoreBox.textContent = "0";
+}
+
+const weapons = document.querySelectorAll('.weapon');
+
+weapons.forEach((weapon) => weapon.addEventListener('click',createMessageRound));
+weapons.forEach((weapon) => weapon.addEventListener('click',startGame,{once: true}));
+function startGame(e){
+    computerScoreBox.textContent = computerScoreBox.dataset.computerScore;
+    playerScoreBox.textContent = playerScoreBox.dataset.playerScore;
+
+}
+
+
+
 function getMessageRound(resultRound) {
 
     let messageWin = "You Win! " + resultRound[1] + " beats " + resultRound[2] + " :)";
@@ -65,6 +148,7 @@ function getMessageRound(resultRound) {
     if(resultRound[0] === -1) return messageLose;
 
 }
+
 
 
 
@@ -100,4 +184,3 @@ function game() {
 
 }
 
-console.log(game());
